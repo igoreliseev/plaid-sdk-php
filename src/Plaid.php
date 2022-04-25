@@ -649,6 +649,23 @@ class Plaid
 	}
 
 	/**
+	 * Create a token for Income verification user
+	 *
+	 * @param string $userId
+	 * @return object
+	 */
+	public function createUserToken(string $userId): object
+	{
+		$params = [
+			"user_id" => $userId
+		];
+
+		return $this->doRequest(
+			$this->buildRequest("post", "user/create", $this->clientCredentials($params))
+		);
+	}
+
+	/**
 	 * Get an Item's income information.
 	 *
 	 * @param string $access_token
