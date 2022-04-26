@@ -666,6 +666,23 @@ class Plaid
 	}
 
 	/**
+	 * Retrieve a user's payroll information
+	 *
+	 * @param string $userId
+	 * @return object
+	 */
+	public function getPayrollIncome(string $userToken): object
+	{
+		$params = [
+			"user_token" => $userToken
+		];
+
+		return $this->doRequest(
+			$this->buildRequest("post", "credit/payroll_income/get", $this->clientCredentials($params))
+		);
+	}
+
+	/**
 	 * Get an Item's income information.
 	 *
 	 * @param string $access_token
