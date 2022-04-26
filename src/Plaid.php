@@ -255,6 +255,7 @@ class Plaid
 	 * @param string|null $link_customization_name
 	 * @param AccountFilters|null $account_filters
 	 * @param string|null $access_token
+	 * @param string|null $user_token
 	 * @param string|null $redirect_uri
 	 * @param string|null $android_package_name
 	 * @param string|null $payment_id
@@ -270,6 +271,7 @@ class Plaid
 		?string $link_customization_name = null,
 		?AccountFilters $account_filters = null,
 		?string $access_token = null,
+		?string $user_token = null,
 		?string $redirect_uri = null,
 		?string $android_package_name = null,
 		?string $payment_id = null): object {
@@ -298,6 +300,10 @@ class Plaid
 
 		if( $access_token ){
 			$params["access_token"] = $access_token;
+		}
+
+		if( $user_token ){
+			$params["user_token"] = $user_token;
 		}
 
 		if( $redirect_uri ){
@@ -657,7 +663,7 @@ class Plaid
 	public function createUserToken(string $userId): object
 	{
 		$params = [
-			"user_id" => $userId
+			"client_user_id" => $userId
 		];
 
 		return $this->doRequest(
