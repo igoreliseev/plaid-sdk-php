@@ -283,7 +283,10 @@ class Plaid
 			"user" => [
 				"client_user_id" => $client_user_id
 			],
-			"products" => $products
+			"products" => $products,
+			"transactions" => [
+				"days_requested" => 730,
+			],
 		];
 
 		if( $webhook ){
